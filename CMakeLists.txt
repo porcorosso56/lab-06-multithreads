@@ -32,7 +32,7 @@ add_executable(multithread
 )
 
 #SHA2
-target_include_directories(multithread
+target_include_directories(picosha2
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third-party/PicoSHA2
 )
 target_link_libraries(multithread 
