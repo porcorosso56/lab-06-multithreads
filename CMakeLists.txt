@@ -27,15 +27,15 @@ string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 hunter_add_package(Boost COMPONENTS log thread filesystem system)
 find_package(Boost CONFIG REQUIRED log thread filesystem log_setup system)
 
-add_executable(${PROJECT_NAME}
+add_executable(multithread
   ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
 )
 
 #SHA2
-target_include_directories(${PROJECT_NAME}
+target_include_directories(multithread
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third-party/PicoSHA2
 )
-target_link_libraries(${PROJECT_NAME} 
+target_link_libraries(multithread 
 	Boost::log
 	Boost::thread	
 	Boost::filesystem
