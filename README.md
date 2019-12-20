@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/htmlgod/multithreadlab06.svg?token=DhyR4qA4NeY9eNsr6S2Q&branch=master)](https://travis-ci.com/htmlgod/multithreadlab06)
 # Лабораторная работа №6
 
 ## Задание
