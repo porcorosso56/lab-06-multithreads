@@ -11,7 +11,7 @@ set(
   CACHE STRING "Default cache server"
 )
 
-include("cmake/HunterGate.cmake")
+include("tools/gate/cmake/HunterGate.cmake")
 
 HunterGate(
   URL "https://github.com/cpp-pm/hunter/archive/v0.23.218.tar.gz"
@@ -27,17 +27,15 @@ string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 hunter_add_package(Boost COMPONENTS log thread filesystem system)
 find_package(Boost CONFIG REQUIRED log thread filesystem log_setup system)
 
-add_library(picosha2 PUBLIC)
-
-add_executable(multithread
+add_executable(${PROJECT_NAME}
   ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
 )
 
 #SHA2
-target_include_directories(picosha2
+target_include_directories(${PROJECT_NAME}
 	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third-party/PicoSHA2
 )
-target_link_libraries(multithread 
+target_link_libraries(${PROJECT_NAME} 
 	Boost::log
 	Boost::thread	
 	Boost::filesystem
