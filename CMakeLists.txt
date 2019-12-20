@@ -27,6 +27,8 @@ string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 hunter_add_package(Boost COMPONENTS log thread filesystem system)
 find_package(Boost CONFIG REQUIRED log thread filesystem log_setup system)
 
+add_library(picosha2 INTERFACE)
+
 add_executable(multithread
   ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
 )
