@@ -43,7 +43,7 @@ void init()
 
 bool isEndingOfHashCorrect(std::string str) {
 	const std::string check = "0000";
-	if ( str.substr(str.size() - check.size(), str.size()) == check && str.size() - check.size() > 0)
+	if ( str.size() - check.size() > 0 && str.substr(str.size() - check.size(), str.size()) == check )
 		return true;
 	return false;
 }
