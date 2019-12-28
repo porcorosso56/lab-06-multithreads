@@ -25,7 +25,7 @@ string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 
 #Boost::log + Boost::thread + Boost::filesystem
 hunter_add_package(Boost COMPONENTS log thread filesystem system regex)
-find_package(Boost CONFIG REQUIRED log thread filesystem log_setup system)
+find_package(Boost CONFIG REQUIRED log thread filesystem log_setup system regex)
 
 add_executable(${PROJECT_NAME}
   ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
