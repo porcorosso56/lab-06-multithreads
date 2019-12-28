@@ -26,9 +26,6 @@ void init()
         keywords::rotation_size = 128 * 1024 * 1024,
         keywords::format = format
     );
-    sinkFile->set_filter(
-        logging::trivial::severity >= logging::trivial::trace
-    );  
 
     auto sinkConsole = logging::add_console_log(
         std::cout,
@@ -43,7 +40,7 @@ void init()
 
 bool isEndingOfHashCorrect(std::string str) {
 	const std::string check = "0000";
-	if ( str.size() - check.size() > 0 && str.substr(str.size() - check.size(), str.size()) == check )
+	if ( str.size() - check.size() >= 0 && str.substr(str.size() - check.size(), str.size()) == check )
 		return true;
 	return false;
 }
@@ -66,11 +63,14 @@ void generateHash() {
 }
 
 int main(int argc, char* argv[]) {
+	
+	boost::thread_group g;
+	
 	init();
 
 	int threadAmount;
 	if (argc >= 2) {
-		threadAmount = atoi(argv[1]);
+		threadAmount = boost::lexical_cast<int>(argv[1]);
 	} else {
 		threadAmount = std::thread::hardware_concurrency();
 	}
@@ -78,9 +78,9 @@ int main(int argc, char* argv[]) {
 	std::vector<std::thread> threads;
 	threads.reserve(threadAmount);
 	for (int i = 0; i < threadAmount; i++) {
-		threads.emplace_back(generateHash);
+		g.create_thread (boost::bind (generateHash));
 	}	
-	for (std::thread &thread : threads) {
-		thread.join();
-	}
+	 
+	g.join_all();
+	return 0;
 }
