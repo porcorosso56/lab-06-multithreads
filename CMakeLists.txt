@@ -24,8 +24,8 @@ string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-command-line-argument")
 string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 
 #Boost::log + Boost::thread + Boost::filesystem
-hunter_add_package(Boost COMPONENTS log thread filesystem system regex)
-find_package(Boost CONFIG REQUIRED log thread filesystem log_setup system regex)
+hunter_add_package(Boost COMPONENTS log thread filesystem system)
+find_package(Boost CONFIG REQUIRED log thread filesystem log_setup system)
 
 add_executable(${PROJECT_NAME}
   ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
@@ -41,6 +41,5 @@ target_link_libraries(${PROJECT_NAME}
 	Boost::filesystem
 	Boost::log_setup
 	Boost::system
-	Boost::regex
 )
 
